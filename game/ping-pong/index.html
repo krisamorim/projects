@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ping-Pong</title>
+</head>
+<body>
+    <canvas id="element" width="600" height="500"></canvas>
+    <script>
+        //create a "loop"
+        window.onload = function () {
+          setInterval(delayFunction, 1000 / 30);//every 30 milliseconds
+        }
+        //this var must be out the delayFunction thus the loop doesn't reset the ball position
+        var positionBallX = positionBallY = 200;
+        var speedBallPositionX = speedBallPositionY = 5;
+        var positionYuserLeft = 90;
+        var positionYuserRight = 250;
+        //this var must be out the delayFunction thus the loop doesn't reset the score value
+        var scoreUserLeft = scoreUserRight = 0;
+        //variables
+        var elementDrawn = document.getElementById("element");
+        var areaElement = elementDrawn.getContext("2d");
+        var tableWidth = 600;
+        var tableHeight = centerLineHeight = 500;
+        var centerLineWidth = userWidth = diameterBall = 10;
+        var userHeight = 100;
+        var effectUser = 0.3;
+
+        function delayFunction(){
+          //table
+          areaElement.fillStyle = '#286045';
+          areaElement.fillRect(0,0,tableWidth,tableHeight);
+          //centerline
+          areaElement.fillStyle = '#ffffff';
+          areaElement.fillRect(tableWidth/2-centerLineWidth/2,0,centerLineWidth,centerLineHeight);
+          //userleft
+          areaElement.fillRect(0,positionYuserLeft,userWidth,userHeight);
+          //userrigth
+          areaElement.fillRect(tableWidth-userWidth,positionYuserRight,userWidth,userHeight);
+          //ball
+          areaElement.fillRect(positionBallX-diameterBall/2,positionBallY-diameterBall/2,diameterBall,diameterBall);
+          //Show Score
+          areaElement.fillText("User Left: " + scoreUserLeft, 110,20);
+          areaElement.fillText("User Right: " + scoreUserRight, tableWidth - 190,20);
+          //move the ball
+          positionBallX = positionBallX + speedBallPositionX;
+          positionBallY = positionBallY + speedBallPositionY;
+          //check side superior
+          if (positionBallY < 0 && speedBallPositionY < 0) {
+            speedBallPositionY = -speedBallPositionY;
+          }
+          //check side down
+          if (positionBallY > tableHeight && speedBallPositionY > 0) {
+            speedBallPositionY = -speedBallPositionY;
+          }
+          //check userRight scored point
+          if (positionBallX < 0){
+            //the if below is when ball is within user area
+            if(positionBallY > positionYuserLeft && positionBallY < positionYuserLeft + userHeight){
+              //hit de ball
+              speedBallPositionX = -speedBallPositionX;
+              //effect if you touch the tip
+              var differenceY = positionBallY -(positionYuserLeft + userHeight / 2);
+              speedBallPositionY = differenceY * effectUser;
+            } else {
+              //the userRight earns one point
+              scoreUserRight = scoreUserRight + 1;
+              //put the ball in the center
+            }
+          }
+          //check userLeft scored point
+          if (positionBallX > tableWidth) {
+            //the if below is when ball is within user area
+            if (positionBallY > positionYuserRight && positionBallY < positionYuserRight + userHeight) {
+              //hit de ball
+              speedBallPositionX = -speedBallPositionX;
+              //effect if you touch the tip
+              var differenceY = positionBallY -(positionYuserRight + userHeight / 2);
+              speedBallPositionY = differenceY * effectUser;
+            } else {
+                //the userRight earns one poin
+                scoreUserLeft++;
+                //put the ball in the center
+              }
+            }
+          }
+    </script>
+</body>
+</html>

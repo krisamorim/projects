@@ -1,0 +1,117 @@
+Criar .env na pasta raiz e add o conteúdo abaixo
+	DB_USER=root
+	DB_PASS=
+	DB_HOST=localhost
+	DB_PORT=3306
+	DB_DIALECT=mysql
+	DB_DATABASE=fake-instagram
+
+
+Criar .env.example e copia o conteudo do .env sem os valores
+	DB_USER=
+	DB_PASS=
+	DB_HOST=
+	DB_PORT=nodemon
+	DB_DIALECT=
+	DB_DATABASE=
+
+add no .gitignore
+	.env
+
+Em TODOS os arquivos que usam informações que foram inseridas no . Env deve ser add  o comando require(“dotenv”).config(), como no exemplo a seguir:
+	no arquivo configs/database.js
+		require(“dotenv”).config();
+
+
+altera as informações no configs/database.js
+    require("dotenv").config();
+
+    module.exports = {
+        host: process.env.DB_HOST,
+        dialect: process.env.DB_DIALECT,
+        username: process.env.DB_USER,
+        port: process.env.DB_PORT,
+        password: process.env.DB_PASS,
+        database: process.env.DB_DATABASE,
+    }
+
+instalar o heroku
+	npm install heroku	
+
+criar conta no heroku.com
+
+
+depois heroku login
+
+feche e verifique o terminal retornou a mensagem abaixo:
+
+Opening browser to https://cli-auth.heroku.com/auth/cli/browser/f124dbac-3d12-4385-9744-a650fec8d4d7
+Logging in... done
+Logged in as kris.a.furtado@gmail.com
+
+depois git add origin <link do heroku>
+
+npx heroku create --app=ts987-fake-instagram
+
+git remote add heroku https://git.heroku.com/ts987-fake-instagram.git
+
+faça o git add e depois o commit
+
+agora faça o push:
+git push heroku master
+
+#mudando para outro DB
+heroku addons:create heroku-postgresql:hobby-dev
+
+ira aparecer assim no terminal:
+Creating heroku-postgresql:hobby-dev on ⬢ ts987-fake-instagram... free
+Database has been created and is available
+ ! This database is empty. If upgrading, you can transfer
+ ! data from another database with pg:copy
+Created postgresql-regular-91594 as DATABASE_URL
+Use heroku addons:docs heroku-postgresql to view documentation
+
+
+
+agora precisamos configurar o env do servidor (aki iremos fazer via terminal)
+heroku config | grep DATABASE_URL (ou heroku config:)
+
+deve teronar isso:
+
+
+DATABASE_URL: postgres://kzhcbbchombuee:9906e78563160df0bca01a53707b1ec1e646bcb82638db7278099c98417d5e30@ec2-34-230-231-71.compute-1.amazonaws.com:5432/da400fh1jgs5jb
+
+desmembrando:
+
+DATABASE_URL: postgres://
+kzhcbbchombuee:
+9906e78563160df0bca01a53707b1ec1e646bcb82638db7278099c98417d5e30@
+ec2-34-230-231-71.compute-1.amazonaws.com:
+5432/
+da400fh1jgs5jb
+
+limpando
+DATABASE_URL: postgres://
+NOME DO USUARIO DO BANCO = kzhcbbchombuee
+SENHA DO BANCO = 9906e78563160df0bca01a53707b1ec1e646bcb82638db7278099c98417d5e30@
+HOST DO BANCO = ec2-34-230-231-71.compute-1.amazonaws.com
+PORTA DO BANCO = 5432
+NOME DO BANCO = da400fh1jgs5jb
+
+agora leve essa informações pro env
+primeiro vamos setar as variaveis
+
+heroku config:set DB_USER=kzhcbbchombuee <enter>
+heroku config:set DB_PASS=9906e78563160df0bca01a53707b1ec1e646bcb82638db7278099c98417d5e30 <enter>
+heroku config:set DB_HOST=ec2-34-230-231-71.compute-1.amazonaws.com <enter>
+heroku config:set DB_PORT=5432 <enter>
+heroku config:set DB_DIALECT=postgres <enter>
+heroku config:set DB_DATABASE=da400fh1jgs5jb <enter>
+
+depois rode as migration
+heroku run sequelize db:migrate
+
+depois entre n pagina novamente https://ts987-fake-instagram.herokuapp.com/
+
+
+esperimentar https://ts987-fake-instagram.herokuapp.com/

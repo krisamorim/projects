@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <!--head-->
+    <%- include('partials/head') %> 
+
+  <title>PéNoChão</title>
+</head>
+
+<body>
+    <!--Cabeçalho-->
+    <%- include('partials/headerLogada') %> 
+  
+  <main class="container">
+    <div class="row mt-3 mb-3">
+      <%- include('atletaPerfil') %>
+      <%- include('atletaFeed') %>  
+      <%- include('atletaResultados') %>  
+    </div>
+  </main>
+</body>
+<!-- Footer-->
+<%- include('partials/footer') %> 
+</html>

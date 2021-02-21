@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+<!-- Incluindo a Head Padrão -->  
+    <%- include('partials/head') %> 
+    
+    <title>Login - Pé no Chão</title>
+  </head>
+  <body>
+    <video id="video" autoplay muted loop>
+      <source src="/videos/estadio1.m4v" type="video/mp4">
+    </video>
+    <!-- Include Header Não Logada-->
+    <%- include('partials/headerNaoLogada') %> 
+      <main>
+            <div class="container container-sm-fluid">
+              <div class="row d-flex justify-content-center align-items-center">
+                <div  class="col-lg-6 col-md-6 col-sm-12" >
+                  <h1 class="tituloLogin">Jogue, resenhe e se destaque no campo</h1>
+                  <h2 class="subtituloLogin">Conheça a PéNoChão, a rede social da várzea!</h2>
+
+
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 margemForm">
+                  <div class="d-flex justify-content-center m-0 p-0">
+                    <div class="form-cadastro my-1">
+                       <h1>Login</h1>
+                       <% if( typeof msg !== 'undefined') {%>
+                        <div class="alert alert-warning" role="alert">
+                         <%= msg %>
+                       </div>
+                       <% } %>
+                       <% if( typeof msg2 !== 'undefined') {%>
+                        <div class="alert alert-warning" role="alert">
+                         <%= msg2 %>
+                       </div>
+                       <% } %>
+                    
+                      <div class="alinhamento">
+                        <form action="/" method="post" method="POST">
+                          <input class="" placeholder= "E-mail" type="email" id="email" name="email" required>
+                          <input type="password" placeholder= "Senha" id="password" name="password" required>
+                          <div class="column">
+                            <div>
+                             <button class="btn btn-primary w-100 botaoLogin mr-0 ml-0" type="submit"> Entrar</button>
+                            </div>
+                            <div>
+                              <a class="btn btn-primary w-100 botaoLogin mr-0 ml-0" href="cadastro"> Cadastre-se </a>
+                            </div>
+                          </form>
+                            <div class="my-3" >
+                                <a href="" data-toggle="modal" id="esqueceuSenha" data-target="#exampleModalCenter"> Esqueceu a conta? </a>
+                                <!-- Button trigger modal -->
+                                <!-- <button type="button" class="btn btn-link" style="" data-toggle="modal" data-target="#exampleModalCenter">
+                                  Esqueceu a conta?
+                                </button> -->
+
+                                <!-- Modal -->
+                                
+                                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLongTitle">Digite seu endereço de email:</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                       
+                                          <form action="/forgot_password" method="POST">
+                                            <div class="modal-body">
+                                              <label for='email'>E-mail:</label>
+                                              <input type="email" class="email" name="email" id="email">
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-dark" data-dismiss="modal">Cancelar</button>
+                                              <button type="submit" class="btn btn-primary">Enviar</button>
+                                            </div>
+                                            </div>
+                                          </form>
+                              
+                                      </div>
+                                    </div>
+                                  </div>
+                                
+                                <!-- fim modal-->
+                            </div>
+                            </div>
+                        
+                       
+                        </div>
+                    </div>
+                </div>
+              </div>
+              </div>  
+            </div>
+    </main>
+     
+      <%- include('partials/footerLp') %> 
+  </body>
+</html>

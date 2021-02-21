@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <!-- Configurações da Head Padrões -->
+  <%- include('partials/head') %> 
+
+  <title>Atualização de Cadastro - Pé no Chão</title>
+
+</head>
+
+<body>
+  <video id="video" autoplay muted loop>
+    <source src="/videos/estadio2.m4v" type="video/mp4">
+  </video>
+
+  <!-- Header com logo Centralizado-->
+  <%- include('partials/headerCadastro') %>
+  
+
+  <main>
+    <div class="container justify-content-center area-cadastro">
+        
+      <div class="row d-flex justify-content-center">
+          
+        <div class="col-sm-4 col-md-12 col-lg-6 form-cadastro">          
+          <div class="alinhamento">
+
+              <div>  
+        </div>
+            <form action="/atualizar" method="POST" enctype="multipart/form-data">
+                <div class="col d-flex justify-content-center my-5">
+                <!-- Foto profile -->
+                <div >
+                  <div>  </div>
+               <input class="foto-perfil b-file" style="background-image: url('/images/midias/<%=jogadorLogado.path%>');"  >
+               
+              </div>
+             
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                
+              </div>
+              
+            </div>
+            <input name="foto" type="file" id="file"/>
+            
+                <label for="nomeA">Nome:</label>
+                <input type="text" id="nomeA" name="nomeA" value="<%=jogadorLogado.nome%>">
+                <label for="dataNascimentoA"> Data de Nascimento </label>
+                <input type="date" id="dataNascimentoA" name="dataNascimentoA"  >
+
+              <label for="sexoA"> Sexo </label>
+              <select name="sexoA"  placeholder="">
+                <option value="" selected> <%=jogadorLogado.sexo%> </option>
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+              </select>
+
+              <label for="posicaoJogadorA">Posição Jogador</label>
+              <select name="posicaoJogadorA" >
+                <option value="<%=jogador.posicaoJogador%>" selected><%=jogadorLogado.posicaoJogador%></option>
+                <option value="Goleiro">Goleiro</option>
+                <option value="Zagueiro">Zagueiro</option>
+                <option value="Lateral">Lateral</option>
+                <option value="Volante">Volante</option>
+                <option value="Meio Campo">Meio Campo</option>
+                <option value="Meio Atacante">Meio Atacante</option>
+                <option value="Ponta">Ponta</option>
+                <option value="Segundo Atacante">Segundo Atacante</option>
+                <option value="Centroavante">Centroavante</option>
+              </select>
+              <label for="cep">CEP</label>
+              <div class="d-flex justify-content-around">
+                <input type="text" id="cep" name="cepA" value="<%=jogadorLogado.cep%>" >
+                <button type="submit" id="btnPesquisar" class="btn btn-primary "><img src="/images/lupa.png" class="pesquisarCep" alt=""></button>
+              </div>
+              <label for="estadoA"> Estado </label>
+              <input type="text" id="estado" name="estadoA"  placeholder="<%=jogadorLogado.estado%>" readonly>
+            
+              <label for="cidadeA">Cidade</label>
+              <input type="text" id="cidade" name="cidadeA"   placeholder="<%=jogadorLogado.cidade%>" readonly>
+
+              <label for="bairroA">Bairro</label>
+              <input type="text" id="bairro" name="bairroA"  placeholder="<%=jogadorLogado.bairro%>" value="" readonly>
+
+              <!-- <label for="telefoneA">Número de Telefone</label>
+              <input type="text" id="telefoneA" name="telefoneA"  placeholder="<%=jogadorLogado.telefone%>"> -->
+
+              <input type="submit" id="btn-form" value="Atualizar" required>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+<!-- Footer -->
+<%- include('partials/footerLp') %>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <!-- Configurações da Head Padrões -->
+  <%- include('partials/head') %>
+
+  <title>Cadastro - Pé no Chão</title>
+
+</head>
+
+<body>
+  <video id="video" autoplay muted loop>
+    <source src="/videos/estadio2.m4v" type="video/mp4">
+  </video>
+
+  <!-- Header com logo Centralizado-->
+  <%- include('partials/headerCadastro') %>
+
+  <main>
+    <div class="container justify-content-center area-cadastro">
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-4 col-md-12 col-lg-6 form-cadastro">
+          <h1>Cadastro</h1>
+          <div class="alinhamento">
+            <form action="/cadastro" method="POST">
+
+              <label for="email"> E-mail </label>
+              <input type="email" id="email" name="email" required>
+
+              <label for="password"> Senha </label>
+              <input type="password" id="password" name="password" required >
+
+              <label for="senhaConfirmacao"> Confirmação da Senha </label>
+              <input type="password" id="senhaConfirmacao" name="senhaConfirmacao" required>
+
+              <label for="nome"> Nome </label>
+              <input type="text" id="nome" name="nome">
+
+              <label for="sexo"> Sexo </label>
+              <select name="sexo" required>
+                <option value="selecione" selected>Selecione</option>
+                <option value="feminino">Feminino</option>
+                <option value="masculino">Masculino</option>
+              </select>
+
+              <label for="dataNascimento"> Data de Nascimento </label>
+              <input type="date" id="dataNascimento" name="dataNascimento">
+
+
+              <label for="posicaoJogador"> Posição em Campo </label>
+              <select name="posicaoJogador" required>
+                <option value="selecione" selected>Selecione</option>
+                <option value="Goleiro">Goleiro</option>
+                <option value="Zagueiro">Zagueiro</option>
+                <option value="Lateral">Lateral</option>
+                <option value="Volante">Volante</option>
+                <option value="Meio Campo">Meio Campo</option>
+                <option value="Meio Atacante">Meio Atacante</option>
+                <option value="Ponta">Ponta</option>
+                <option value="Segundo Atacante">Segundo Atacante</option>
+                <option value="Centroavante">Centroavante</option>
+              </select>
+              <label for="cep">CEP (Clique na lupa para buscar e confirmar o seu CEP)</label>
+              <div class="d-flex justify-content-center">
+                <input type="text" id="cep" name="cep" required>
+                <button type="submit" id="btnPesquisar" class="btn btn-primary "><img src="/images/lupa.png" class="pesquisarCep" alt=""></button>
+              </div>
+              <label for="estado"> Estado </label>
+              <input type="text" id="estado" name="estado" value="" required readonly>
+              <!-- <select name="estado" id="estado">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP" selected >São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                  </select> -->
+
+
+
+
+
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" name="cidade" value="" required readonly>
+
+              <label for="bairro">Bairro</label>
+              <input type="text" id="bairro" name="bairro" value="" required readonly>
+
+              <!-- <label for="telefone">Número de Telefone</label>
+              <input type="text" id="telefone" name="telefone" required> -->
+
+              <input type="submit" id="btn-form" value="Cadastrar" required>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+<!-- Footer -->
+<%- include('partials/footerLp') %>
+
+</html>

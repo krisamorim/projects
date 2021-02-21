@@ -1,0 +1,146 @@
+<div class="col-sm-6 col-feed">
+  <div class="container bg-feed border border-penochao-mobile rounded-top-penochao rounded-bottom-penochao">
+    <!-- Começo do card feed  -->
+    <%# console.log( "==========================================================="); console.log(publications)%> 
+    <% let contador = [] %>
+    <% if (publications) { %>
+    <!-- verifica se tem alguma postagem se ao tiver nao entra na condicao-->
+    <% publications.reverse(); publications.forEach(publication => { %>
+    <% if (publication.jogadores_id == jogador.id) { %>
+    <!-- Construindo else -->
+    <% contador.push(publication.id) %>    
+    <!-- pela array puplication passa pelo reverse() para trocar orgem do arry antes de passar para forEach-->
+    <div class="row m-0 my-2 bg-white mb-4 rounded-penochao" id="publicacao-<%=publication.id%>">
+      <div class="col-12 p-0  ">
+        <div class="col p-0">
+          <!-- Inicio parte inferior  do time line -->
+
+        <div class="d-flex-in px-3 my-3">
+          <div class="d-flex">
+            <div class="d-flex align-items-center">
+              <a href="/perfilJogador/<%=publication.Jogador.id%>" class="rounded-circle img-header-card" style="background-image: url('/images/midias/<%=publication.Jogador.path%>');">
+              </a>
+            </div>
+
+            <div class=" d-flex-column align-items-center col-sm-6 pl-2">
+              <a href="">
+                <h6 class="text-1 my-1 titulo-header-card"><%=publication.Jogador.nome%></h6>
+              </a>
+              <!-- usei o moment para formatar data que foi postada foto  -->
+            <h6 class="text-1 titulo-header-data"> <%= moment(publication.create_at).format('DD/MM/YYYY') %></h6>
+            </div>
+            <!--
+              <div class=" ml-auto">
+              <button class="d-button" type="submit">
+                <h6 class=" text-1">Deixar de seguir</h6>
+              </button>
+            </div>
+            -->
+
+          </div>
+          <div class="mt-2">
+            <p><%=publication.descricao%></p>
+          </div>
+          <!--  Inicio conteudo centro container -->
+          <form action="/perfilJogador/like" id="form-curtir-<%=publication.id%>" method="POST">
+          <div class="d-flex justify-content-center p-0">
+            <% let extensao = publication.path.includes('.mp4'); %>
+            <% if(extensao) {%>   
+              <video controls="" class="col-12">
+  
+                <source src="/images/midias/<%=publication.path%>" type="video/mp4">
+                Seu navegador não suporta o elemento <code>video</code>.
+              </video>
+            <% } else {%>
+            <a class="postagem" style="background-image: url('/images/midias/<%=publication.path%>');" href="#publicacao-<%=publication.id%>" onclick="document.getElementById('form-curtir-<%=publication.id%>').submit();" ></a>
+            <% } %>
+          </div>
+          <!--  fim conteudo centro container -->
+          <!-- Inicio imagens para curtir pagina -->
+          <div class="d-flex mt-2 justify-content-end align-items-center">
+            <div>
+              <!-- botao da imagem  -->
+              
+                <input type="hidden" name="postagens_id" id="postagens_id" value="<%=publication.id%>">
+                <input type="hidden" name="jogador_id" id="jogador_id" value="<%=jogador.id%>">
+                <input type="hidden" name="perfilJogador" id="perfilJogador" value="<%=jogador.id %>">
+                <button class="d-button p-0" type="submit"> <i class="fas fa-futbol ml-3 "> </i></button>
+              </form>
+
+            </div>
+            <div class=" ml-2">
+              <h6 class=".d_text1 m-0 contadorGol"><%=publication.Curtidas.length%> </h6>
+            </div>
+            <div>
+              <button class="d-button p-0 ml-2"> <i class="far fa-comment ml-2"> </i></button>
+            </div>
+            <div class=" ml-2 ">
+              <h6 class=".d_text-1 m-0 contadorGol"><%=publication.Comentarios.length%></h6>
+            </div>
+          </div>
+       
+          <!-- Fim imagens para curtir pagina -->
+          <!-- Inicio comentarios  -->
+          <div class="d-flex ">
+            <div class="d-flex col-12 p-0 ">
+              <div class="col-12 p-0">
+                <% if (comentarios) { %>
+                <!-- verifica se tem alguma postagem se ao tiver nao entra na condicao-->
+                <% for(let comentario of comentarios ) { %>
+                <% if (comentario.postagens_id == publication.id) { %>
+                <div class="d-flex col-12 p-0 align-content-center mb-2">
+                  <a href="/perfilJogador/<%=comentario.Jogador.id%>" class="rounded-circle img-header-card2" style="background-image: url('/images/midias/<%=comentario.Jogador.path%>');">
+                    
+                  </a>
+                  <a class="ml-2 align-self-center" href="/perfilJogador/<%=comentario.Jogador.id%>">
+                    <h6 class=" title-comentario text-1"><%=comentario.Jogador.nome%></h6>
+                  </a>
+                </div>
+                <div class="  row d-flex aligin-items-center justify-content-between alinhamento-centro">
+                  <p class="col-10 m-0 quebra-linha mb-3"><%=comentario.descricao%></p>
+                  <p class="col-2 m-0 pl-0 date-comentario"><%=moment(comentario.create_at).format('DD/MM/YY')%></p>
+                </div>
+                <% } %>
+              <% } %>
+            <% } %>
+        </div>
+          
+              </div>
+            </div>
+          </div>
+             <hr class="m-0">
+        <form action="/perfilJogador/comentario" id="form-comentario" method="POST">
+          <!-- rota so para gravar comentarios no banco de dados  -->
+          <div class="postClass d-flex justify-content-around">
+            <!-- usei o hidden para passar id post //id jogador// para ser gravado banco de dados   -->
+            <input type="hidden" name="postagens_id" id="postagens_id" value="<%=publication.id%>">
+            <input type="hidden" name="jogador_id" id="jogador_id" value="<%=jogadorLogado.id%>">
+            <input type="hidden" name="perfilJogador" id="perfilJogador" value="<%=jogador.id %>">
+            <input class="form-control comentario-form mt-2 mb-2" type="text" name="descricao" placeholder="Deixe seu comentário "
+              id="descricao"  required> </input>
+              <button onclick="document.getElementById('form-comentario-<%=publication.id%>').submit();" type="submit" class="btn-comentario">
+                <img src="/images/Enviar.png" alt="Enviar Comentário" id="enviar">
+              </button>
+          </div>
+          
+        </form>
+          <!-- Fim comentarios  -->
+        </div>
+      </div>
+      <!-- Fim da coluna do feed -->
+    </div>
+    <% } %>
+
+    <% } ); %>
+    <% } console.log(contador.length); if(contador.length == 0){ %>
+      <div class="text-center">
+        <h1 class="titulo-sem-post mt-3">
+          Este usuário tá dormindo em campo!<br> Ainda não tem publicações!
+        </h1>
+        <img src="/images/cartao.png" alt="Cartão Vermelho" class="mb-3" id="cartao">
+      </div>
+      
+    <% } %>
+  </div>
+</div>
+<!-- Fim da coluna do feed -->

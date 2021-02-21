@@ -1,0 +1,55 @@
+ <!-- Início da coluna do Perfil -->
+ <div class="col-sm-3 ">
+  <div class="border rounded-top-penochao rounded-bottom-penochao">
+  <div class="row m-0">
+      <div class="col d-flex justify-content-center p-0">
+          <!-- Banner Profile-->
+          <div>
+              <img class="rounded-top-penochao bg-profile" src="/images/gramado-bkg.png">
+          </div>
+        </div>
+  </div>
+  <div class="row">
+      <div class="col d-flex justify-content-center">
+          <!-- Foto profile -->
+          <div class="foto-perfil"  style="background-image: url('/images/midias/<%=jogador.path%>');">
+          </div>
+      </div>
+  </div>
+  <div class="container">
+    <div class="row ">
+      <div class="col ">
+        <!--  aqui renderiza nome do jogador logado   jogador.nome esta vindo do res.locals.jogador
+         da pasta configs/auth  -->
+          <h5 class="text-center"><%= jogador.nome %></h5>
+          <p class="text-center"><%= jogador.posicaoJogador %></p>
+          <!-- <h5 class="text-center">Estatísticas</h5> -->
+      </div>
+    </div>
+    <% let resultado = seguidor.find( element => element.seguidor_id == jogador.id) %> 
+    <%# console.log("++++++++++++",resultado) %> 
+    <% if(!resultado){%>
+      <form action="/perfilJogador/seguir" method="post">
+        <div class="row justify-content-center mb-3">
+          <input type="hidden" name="idPerfilJogador" id="" value="<%=jogador.id%>">
+          <button class="col-9 btn-form m-0 d-flex justify-content-center" >
+            <p class="text-center mt-2 mb-2" >Seguir</p>
+          </button>
+        </div>
+      </form>
+    
+
+   <% } else { %> 
+    <form action=/perfilJogador/deixarseguir/ method="POST">
+    <div class="row justify-content-center mb-3">
+      <input type="hidden" name="idTabelaSeguidor" id="" value="<%=resultado.id%>">
+      <input type="hidden" name="perfilJogador" id="" value="<%=jogador.id%>">
+      <button class="col-9 btn-form-2 m-0 d-flex justify-content-center" >
+        <p class="text-center mt-2 mb-2" >Deixar de Seguir</p>
+      </button>
+    </div>
+  </form>
+<% } %> 
+    </div>
+  </div>
+  </div>

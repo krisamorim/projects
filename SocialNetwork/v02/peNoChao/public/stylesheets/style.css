@@ -1,0 +1,649 @@
+/* div {
+    border: 1px solid red;
+} */
+
+/*Corpo*/
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+form > input:focus{
+    outline: none;
+}
+
+/*Header*/
+.logo-cadastro{
+    text-align: center;
+}
+#imgLogo{
+    width: 75px;
+}
+#imgNotificacoes{
+    width: 2.5vw;
+}
+#voltar{
+        width: 2.5vw;
+    }
+.nav-desktop-penochao {
+    background-color: #237FCF;
+}
+#buscaHeader{
+    box-shadow: 1px 5px 6px rgb(0,0,0, 0.16);
+}
+
+/*Grid Usuário*/
+.foto-perfil {
+    border: 2px solid lightgrey;
+    border-radius: 50%;
+    margin-top: -90px;
+    background-color: white;
+    background-size: cover;
+    width: 150px;
+    height: 150px;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+.foto-perfil-jogadores {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 3.3vw;
+    height: 3.3vw;
+    border-radius: 50%;
+}
+.rounded-penochao {
+    border-radius: 20px;
+}
+
+.rounded-top-penochao {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.rounded-bottom-penochao {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.rounded-left-penochao {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.rounded-right-penochao {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 1px solid white;
+}
+.titulo-header-data{
+    font-style: normal;
+}
+.img-header-card{
+    
+    width: 40px;
+    height: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.quebra-linha{
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.img-header-card2{
+    
+    width: 35px;
+    height: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+button:focus{
+    outline: none;
+}
+.contadorGol{
+    font-weight: 700;
+}
+.btn-comentario{
+    cursor: pointer;
+    width: 30%;
+    border-radius: 0px 0px 15px 0px;
+    box-sizing: content-box;
+    border: none;
+    background-color: #4285f4;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    font-size: 100%;
+    text-transform: uppercase;
+    max-width: 16.666667%;
+}
+.comentario-form{
+    border: none;
+    border-radius: 0px 0px 15px 15px;
+}
+.comentario-form:focus{
+    box-shadow: none;
+}
+.titulo-sem-post{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    font-size: 200%;
+}
+#cartao{
+    width: 20%;
+}
+.titulo-header-card{
+    margin: 0px;
+    font-size: 100%;
+    font-weight: 700;
+    font-style: normal;
+    padding: 0px;
+}
+
+.bg-feed {
+    background-color: rgb(219,228,255);
+}
+
+.bg-profile {
+    margin:0;
+    padding:0;
+    width: 100%;
+}
+
+.border-penochao {
+    border: 1px solid #dee2e6;
+}
+
+.input-penochao-border {
+    border: none!important;
+}
+.input-penochao-border:focus {
+    border: none!important;
+    box-shadow: none;
+}
+
+/*Páginas de Jogos*/
+.resultado-mantente{
+    height: 50;
+    font-size: 50px;
+}
+.resultado-visitante{
+    height: 50px;
+    font-size: 50px;
+}
+
+.area-cadastro{
+    display: flex;
+}
+.form-cadastro{
+    border-radius: 30px;
+    box-shadow: 0px 0px 20px 9px rgba(0, 0, 0, 0.35);
+    margin: 60px 0px 60px 0px;
+    font-family: Roboto, sans-serif;
+    z-index: 1;
+    background-color: rgba(35,127, 207, 0.7)
+}
+
+.form-cadastro h1{
+    margin: 30px 0px 30px 0px;
+    color: #ffffff;
+    text-align: center;
+    font-weight: 700;
+}
+
+.alinhamento{
+    text-align: center;
+    padding: 0px 30px 0px 30px;
+}
+
+.form-cadastro > .alinhamento > form > label{
+    width: 100%;
+    color: #ffffff;
+    text-align: start;
+    font-size: 100%;
+}
+
+.form-cadastro > .alinhamento > form > select{
+    width: 100%;
+    color: #ffffff;
+    font-size: 100%;
+    height: 45px;
+}
+
+.form-cadastro > .alinhamento > form > input{
+    width: 100%;
+    color: #707070;
+    text-align: center;
+    height: 45px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+    border: solid 1px #707070;
+    margin-bottom: 20px;
+    padding:5px;
+}
+video:focus{
+    outline: none;
+}
+video{
+    width: 100vw;
+}
+.video-post{
+    width: 100vw;
+    height: unset;
+}
+.video-post:focus{
+    outline: none;
+}
+.form-cadastro > .alinhamento > form > select{
+    width: 100%;
+    color: #707070;
+    text-align: start;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+    border: solid 1px #707070;
+    margin-bottom: 20px;
+    padding:5px;
+}
+
+#cep{
+    width: 80%;
+    border-radius: 15px 0px 0px 15px;
+    color: #707070;
+    text-align: center;
+    height: 45px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+    border: solid 1px #707070;
+    margin-bottom: 20px;
+    padding:5px;
+
+}
+.pesquisarCep{
+    width: 30px;
+}
+#btnPesquisar{
+    width: 25%;
+    margin: 0px;
+    font-size: 90%;
+    border-radius: 0px 15px 15px 0px;
+    height: 45px;
+    border: solid 1px #707070;
+    text-align: center;
+    text-align: middle;
+    padding: 0;
+}
+#file{
+    color: #ffff;
+    cursor: pointer;
+    font-weight: bold;
+  }
+.title-comentario{
+    font-style: normal;
+    font-size: 100%;
+    font-weight: 700;
+}
+.alinhamento-centro{
+    align-items: center;
+}
+.date-comentario{
+    text-align: end;
+    font-weight: 300;
+    font-size: 80%;
+}
+.postagem{
+    height: 37vh;
+    width: 100vw;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.postagem:focus{
+    outline: none;
+}
+
+.fa-home, .fa-phone, .fa-envelope{
+    color: #ffffff
+}
+.btn-form{
+    margin: 5px 0px 45px 0px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    background-color: #4285f4 !important;
+    font-size: 100%;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 15px;
+}
+.btn-form-2{
+    margin: 5px 0px 45px 0px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    background-color: #ff0000 !important;
+    font-size: 100%;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 15px;
+}
+
+.btn-form > p {
+    margin: 0;
+    color: #ffffff;
+    align-self: center;
+}
+
+.btn-icon{
+    height: 20px;
+    align-self: center;
+}
+.btn-icon2{
+    height: 30px;
+    align-self: center;
+}
+.btn-publica{
+    border-radius: 0px 15px 0px 0px;
+    background-color: rgb(66, 133, 244);
+    height: 50%;
+
+}
+.btn-publica2{
+    border-radius: 0px 0px 15px 0px;
+    background-color: rgb(30, 112, 245);
+    border: none;
+    color: #ffffff;
+    text-transform: uppercase;
+    padding: 0px;
+    font-size: 90%;
+    height: 50%;
+}
+
+#btn-form{
+    margin: 5px 0px 45px 0px;
+    text-align: center;
+    font-weight: 700;
+    color: #fff;
+    background-color: #4285f4 !important;
+    font-size: 100%;
+    border: none;
+    text-transform: uppercase;
+}
+.btn-publica:hover, .btn-publica2:hover, .btn-comentario:hover{
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+    background-color: rgb(121, 195, 255);
+}
+#btn-form:hover, .btn-form:hover{
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,0.18), 0 4px 15px 0 rgba(0,0,0,0.15);
+}
+
+.margemForm{
+    margin-top: 5vh;
+}
+
+/*Login*/
+.botaoLogin{
+    border-radius: 15px;
+    font-size: 100%;
+    font-weight: 500;
+}
+.tituloLogin{
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 8vh;
+    font-size: 150%;
+    width: 100%;
+}
+.subtituloLogin{
+    text-align: center;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 150%;
+    width: 100%;
+}
+#video{
+    position: fixed;
+    align-items: center;
+    width: cover;
+    z-index: -2;
+    background-position: center center;
+    
+}
+/*Footer*/
+.footerLp{
+    background-color: rgba(35,127, 207, 0.4);
+    margin-top: 10vh;
+}
+footer{
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10vh;
+}
+.mdb-color.lighten-3 {
+    background-color: #929fba !important;
+}
+footer.page-footer {
+    bottom: 0;
+    color: #fff;
+}
+.font-small {
+    font-size: .9rem;
+}
+footer.page-footer .footer-copyright {
+    overflow: hidden;
+    color: rgba(255,255,255,0.6);
+    background-color: rgba(0,0,0,0.2);
+}
+footer a{
+    color: #fff;
+}
+
+#esqueceuSenha{
+    color: #fff;
+}
+@media (max-width: 1204px) {
+    video {
+        width: unset;
+        height: 200vh;
+    }
+}
+
+/* Folha de Estilo para Dispositivos Móveis*/
+@media (max-width: 575.98px) {
+    .form-cadastro{
+        margin-top: 10vh;
+    }
+    video{
+        width: unset;
+        height: 250vh;
+    }
+    .pesquisarCep{
+        width: 25%;
+    }
+    .text-center-titulo{
+    color: black;
+    font-family: Roboto;
+    font-size: 190%;
+    font-weight: 500;
+    text-align: center;
+
+    }
+    .font-130{
+        font-size: 150%;
+    }
+    .margemForm{
+        margin-top: 3vh;
+    }
+    .subtituloLogin{
+        margin-bottom: 0vh;
+        font-size: 100%;
+    }
+    .tituloLogin{
+    margin-top: 3vh;
+    font-size: 100%;
+    }
+    /*Header*/
+    #imgLogo{
+        width: 20vw;
+    }
+    #imgNotificacoes{
+        width: 20vw;
+        padding: 10px;
+    }
+    #voltar{
+        width: 10vw;
+    }
+
+    /*Página de Jogos*/
+    .emblemas{
+    width: 30%;
+    height: 30%;
+    }
+    .resultado-mantente p{
+        font-size: 9vh;
+    }
+    .resultado-visitante p{
+        font-size: 9vh;
+    }
+
+    .bg-profile {
+        width:100vw;
+    }
+    .col-feed {
+        padding:0!important;
+    }
+    .border-penochao-mobile {
+        border: none!important;
+    }
+    
+    .rounded-top-penochao {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+    }
+    
+    .rounded-bottom-penochao {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+    .foto-perfil-jogadores {
+        width: 40vw;
+        height: 40vw;
+    }
+    .logo-mobile {
+        display: flex;
+        justify-content: center;
+        
+    }
+
+    .icon-penochao-mobile-fixed{
+        position: fixed!important;
+        right:0;
+        bottom:0;
+        z-index: 1030;
+        background-color: #237FCF;
+    }
+    
+    #cabeca{
+        background-color:transparent;
+        border: 0;
+    }
+
+    .textTabela{
+        font-size: 15px;
+    }
+    #tabela{
+        padding: 0;
+        margin: 0;
+    }
+
+    .mdb-color.lighten-3 {
+        background-color: #929fba !important;
+    }
+
+    /*Footer*/
+    footer{
+        padding-bottom: 12vh;
+    }
+    .footerLp{
+        margin-top: 5vh;
+    }
+}
+
+.botaoPublicar {
+    background: #a7c0e9;
+    background-image: -webkit-linear-gradient(top, #a7c0e9, #1E62D0);
+    background-image: -moz-linear-gradient(top, #a7c0e9, #1E62D0);
+    background-image: -ms-linear-gradient(top, #a7c0e9, #1E62D0);
+    background-image: -o-linear-gradient(top, #a7c0e9, #1E62D0);
+    background-image: linear-gradient(to bottom, #a7c0e9, #1E62D0);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    height: 2vh;
+    width: 4vw;
+    line-height: 13px;
+    color: #FFFFFF;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 5px;
+    border: solid #337FED 1px;
+    cursor: pointer;
+    margin-left: 2px;
+    margin-top: 5px;
+ }
+ 
+ .botaoPublicar:hover {
+    border: solid #337FED 1px;
+    background: #1a1cdb;
+    background-image: -webkit-linear-gradient(top, #1E62D0, #1a1cdb);
+    background-image: -moz-linear-gradient(top, #1E62D0, #1a1cdb);
+    background-image: -ms-linear-gradient(top, #1E62D0, #1a1cdb);
+    background-image: -o-linear-gradient(top, #1E62D0, #1a1cdb);
+    background-image: linear-gradient(to bottom, #1E62D0, #1a1cdb);
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 8px;
+ }
+
+ .modal-backdrop {
+    z-index: -1;
+ }
+
+.email {
+    width: 80%;
+    color: #707070;
+    text-align: start;
+    border-radius: 15px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.16);
+    border: solid 1px #707070;
+    margin-bottom: 20px;
+    padding:5px;
+}
+ .botaoCameraPublicar{
+    width: 70%;
+    display: flex;
+ }
+ .botaoCameraPublicar:hover{
+     width: 75%;
+ }
+ #cam{
+    width: 60%;
+ }
+ #seta{
+    width: 30%;
+ }
+ #enviar{
+    width: 30%;
+ }
+.bordas{
+    border: 0px;
+}
+
+#msgFoto{
+    position: absolute;
+    right: 0.5em;
+    top: 0px;
+}

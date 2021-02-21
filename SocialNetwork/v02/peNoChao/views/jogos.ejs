@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <!-- Configurações da Head Padrões -->
+  <%- include('partials/head') %> 
+
+  <title>Jogos - PéNoChão</title>
+  
+</head>
+<body>
+
+  <!-- Header Logada-->
+  <%- include('partials/headerLogada') %> 
+        
+    <main class="container justify-content-center ">
+    
+        <!-- <div class=" container col-md-6 my-5">
+            <div class="input-group ">
+              <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search" >
+              <div class="input-group-append">
+                <div class="input-group-text" >
+                    <img src="/images/pesquisa.png" alt="Icon Pesquisa">
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class=" container col-md-9x mt-5 ">
+            <div class="form-row">
+                <div class="form-group col-md-5 p-0">
+                  <label for="inputCity">Time da Casa:</label>
+                  <input type="text" class="form-control" id="inputCity" value="<%= timeDaCasa.nome %>" readonly>
+                </div>
+                
+                <div class="col-md-1 form-group align-self-end text-center">
+                    X
+                  </div>
+                <div class="form-group col-md-6 p-0">
+                  <label for="inputState">Adversário</label>
+                  <select id="inputState" class="form-control">
+                    <option selected>Escolha...</option>
+                    <% times = times.filter((time) => { if(time.id != timeDaCasa.id){return time}}) %>
+                    <% console.log(times) %>
+                    <% times.forEach(time => { %>
+                        <option name="<%= time.id %>" id="<%= time.id %>"><%= time.nome %></option>
+                    <% }); %>
+                        
+                  </select>
+                </div>
+
+                <div class="form-group col-md-5 p-0">
+                  <label for="dataNascimento"> Data do jogo </label>
+                  <input type="date" id="dataNascimento" name="dataNascimento">
+                  </div>
+                <div class="form-group col-md-12 p-0">
+                    <input type="submit" value="Marcar Jogo" class="m-0 col-12 btn btn-success">
+                </div>
+          </div>
+        </div>
+   
+    <div class="container col-md-6  my-2 ">
+
+        <div class="card d-flex justify-content-between border border-dark resultados" >
+            <div class="card-header bg-dark text-white ">
+             Mandante x Visitante 
+            </div>
+            <div class="container ">
+                <div class="container">
+                    <div class=" container ">
+                        <div class="row  " >
+                            <img src="/images/logo_200x200.png" class="emblemas" width="70" height="70" alt="...">
+                            
+                                <div class="">
+                                    <div class="resultado-mantente">
+                                        <p>2</p>
+                                    </div> 
+                                </div>
+                                    <img src="/images/5.jpg" class="mx-auto   align-self-center  "  width="20" height="20"alt="...">
+                                <div  class="">
+                                    <div class="resultado-visitante">
+                                        <p>3</p>
+                                    </div>
+                                </div>
+                                    <img src="/images/logo_200x200.png" class="emblemas" width="70" height="70" alt="...">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>  
+        
+     
+
+</main>
+
+<!-- Footer -->
+<%- include('partials/footer') %> 
+
+</body>
+</html>

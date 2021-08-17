@@ -22,7 +22,7 @@
                 $senhaForm = $_POST['senha'];
 
                 //check credentials
-                if($login =$loginForm && $senha == $senhaForm){
+                if($login = $loginForm && $senha == $senhaForm){
                     //login sucess
                     $_SESSION['login'] = $login;
                     header('Location: index.php');

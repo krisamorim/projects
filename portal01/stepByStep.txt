@@ -1,11 +1,341 @@
-#To create next projet
-1-yarn create next-app
+1-To create next projet
+    # yarn create next-app
 
-#Define a project name
-2- type a name to project
+2-Define a project name
+    # type a name to project
 
-#To create a webserver (just to test)
-3- yarn dev 
+3-To create a webserver (just to test)
+    # yarn dev 
 
+4-Clean clocker/pages/index.js
+    export default function Home() {
+    return (
+        <div>
+          Testaaa
+        </div>
+        )
+    }
+
+5-To create schedule.js and agenda.js
+    locker/pages/schedule.js and locker/pages/agenda.js
+
+6-Installing chakra
+    go to https://chakra-ui.com/docs/getting-started
+    copy yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4
+    past it in to cml at clocker folder and run
+
+7-Change code of the page clocker/pages/_apps.js to:
+    //  1. import `ChakraProvider` component
+    import { ChakraProvider } from "@chakra-ui/react"
+
+    function MyApp({ Component, pageProps }) {
+    return (
+    <ChakraProvider>
+        <Component {...pageProps} />
+    </ChakraProvider>
+    )
+    }
+
+    export default MyApp
+    
+8-Prepare the project to work with SVG
+    #Installing Next SVG support
+        yarn add @svgr/webpack
+
+    #create and/or set up (or add if already exist) the code below in next.config.js file
+        // next.config.js  
+        module.exports = {
+        webpack(config) {
+            config.module.rules.push({
+            test: /\.svg$/,
+            issuer: {
+                test: /\.(js|ts)x?$/,
+            // for webpack 5 use
+            // { and: [/\.(js|ts)x?$/] }
+            },
+            
+            use: ['@svgr/webpack'],
+            });
+
+            return config;
+        },
+        };
+
+9-To import logo
+    # add import into pages/index.js
+        import { logo } from './../components'
+
+    # create index.js in the components folder and type the code bellow
+        export * from './Logo'
+
+    #  create index.js in the components/Logo folder and type the code bellow
+        import logo from './logo.svg'
+
+        export const Logo = logo
+
+10-Creating inputs
+    *for additional informations go to https://chakra-ui.com/docs/overlay/tooltip
+
+    #Creating container into pages/index.js
+        > Import container and other tools
+            import {Container, Box, Input, Button, Text, FormControl,FormLabel, FormHelperText} from '@chakra-ui/react'
+    
+        > Creating container tag
+            Change <div></div> to <Container></Container>
+        
+            > Align container itens
+                -add centerContent into Container tag: 
+                <Container centerContent>
+                </Container>
+
+                -add p={4} into container tag to add a padding
+                <Container p={4} centerContent>
+
+    #Creating Box to subtitle and another to the inputs
+        > Create the tag box after the logo and add padding 4 and margin top 8
+        <Box p={4} mt={8}>
+        
+        </Box>
+        
+        <Box>
+        
+        </Box> 
+
+    #Creating subtitle into Box
+        add <Text>Your share schedule</Text>
+    
+        <Box p={4} mt={8}>
+            <Text>Your share schedule</Text>
+        </Box>
+
+        <Box>
+        </Box>
+        
+    #adding inputs to email, password and username
+        > add <FormControl> and add id, padding 4, active require and set input type 
+            <FormControl id="email" p={4} isRequired> 
+                <FormLabel>Email</FormLabel>
+                <Input type="email" /> 
+            </FormControl>
+        
+        > little adjustments to username form
+            - Wrap the username form with a <Box>, add into the box a display flexDirection with flex row and alignItems center
+                        <Box display="flex" flexDirection="row" alignItems="center">
+                          <Text> clocker.work/</Text>
+                          <FormControl id="username" p={4} isRequired>
+                            <Input type="username" />
+                          </FormControl> 
+                        </Box>
+
+    #Creating Button
+        > Create a box with padding 4 and add Button tag inside it
+            <Box p={4}>
+                <Button width="100%>Go ahead</Button>
+            <Box>
+        
+11-Setup validation in the form (using formik and yup)
+*for additional informations about formik goes to formik.org/docs/overview
+    #Install formik and yup to do form validation
+        yarn add formik yup
+    
+    #Import formik and you into pages/index.js
+        import { useFormik } from 'formik'
+        import * as yup from 'yup'
+    *to better organization it is recommended to place imports from external modules at the top of the page
+    
+    #Create the variables validationSchema and formik 
+        > Create the variable validationSchema as global (outside the export) in pages/index.js
+            const validationSchema = {}
+
+        > Create the variable formik inside export default in pages/index.js
+            const formik = useFormik({
+                onSubmit: () => { },
+                validationSchema,
+                initialValues: {
+                    email: '',
+                    username: '',
+                    password: ''
+                }
+            })
+
+    #Copy and setup Schema from formik project   
+        > go o yup's github (https://github.com/jquense/yup) and copy the schema:
+            let schema = yup.object().shape({
+              name: yup.string().required(),
+              age: yup.number().required().positive().integer(),
+              email: yup.string().email(),
+              website: yup.string().url(),
+              createdOn: yup.date().default(function () {
+                return new Date();
+              }),
+            });
+
+            .string() -> means that variable is a string
+            .email() -> means that variables is a email. You can also type a mesage inside the (), because if it is not a valid email this message will be displayed
+            .required() -> means the field is required. You can also type a mesage inside the (), becasue, if it you try to proceed without filling this field the message will be displayed
+
+            *to this project the schema should be  typed inside the validationSchema like bellow:
+
+            const validationSchema = yup.object().shape({
+                email: yup.string().email('not valid E-mail').required('This field is required'),
+                password: yup.string().required('This field is required'),
+                username: yup.string().required('This field is required'),
+            })
+
+        > add formik into input types
+            <Input type="email" value={formik.values.email}/> 
+            <Input type="password" value={formik.values.password}/>
+            <Input type="username" value={formik.values.username}/>
+
+        > add onChange into Input types to get any updates and send to formik
+            <Input type="email" value={formik.values.email} onChange={formik.handleChange} />
+
+            <Input type="password" value={formik.values.password} onChange={formik.handleChange} />
+
+            <Input type="username" value={formik.values.username} onChange={formik.handleChange} />
+
+        > add onBlur into Input types to validate the field when leave it
+            <Input type="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/> 
+
+            <Input type="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+
+            <Input type="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+    
+        > add <FormHelperText> into formControls, set red color and setup formik error messages
+            to E-mail form:
+            <FormHelperText textColor="#e74c3c">{formik.errors.email}</FormHelperText>
+
+            to password form:
+            <FormHelperText textColor="#e74c3c">{formik.errors.password}</FormHelperText>
+
+            to username form:
+            <FormHelperText textColor="#e74c3c">{formik.errors.username}</FormHelperTex>
+
+            Final result should be something like that:
+                    <FormControl id="email" p={4} isRequired> 
+                        <FormLabel>Email</FormLabel>
+                        <Input type="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/> 
+                        <FormHelperText textColor="#e74c3c">{formik.errors.email}</FormHelperText>
+                    </FormControl>
+
+                    <FormControl id="password" p={4} isRequired>
+                        <FormLabel>Password</FormLabel>
+                        <Input type="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                        <FormHelperText textColor="#e74c3c">{formik.errors.password}</FormHelperText>
+                    </FormControl>
+
+                    <Box display="flex" flexDirection="row" alignItems="center">
+                        <Text> clocker.work/</Text>
+                        <FormControl id="username" p={4} isRequired>
+                            <Input type="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+                            <FormHelperText textColor="#e74c3c">{formik.errors.username}</FormHelperText>
+                        </FormControl> 
+                    </Box>
+
+12-Improve the validation fields
+    #Put FormHelperText between {} and add formik.touched.$inputType to each input type
+        The output should be like bellow:
+            to email input: {formik.touched.email && <FormHelperText textColor="#e74c3c">{}formikErrors.email</FormHelperText>}
+
+            to password input: {formik.touched.password && <FormHelperText textColor="#e74c3c">{formik.errors.password}</FormHelperText>}
+
+            to username input: {formik.touched.username && <FormHelperText textColor="#e74c3c">{formik.errors.username}</FormHelperText>}
+
+13- configure Button submit
+    add on cli formik in the Button tag 
+        <Button width="100%" onClick={formik.handleSubmit}>Go ahead</Button>
+    
+14- destructuring the formik variable
+    #replace const formik... with const {values, errors, touched, handleChange, handleBlur, handleSubmit }... 
+
+        from this:
+            const formik = useFormik({
+                onSubmit: () => { },
+                validationSchema,
+                initialValues: {
+                email: '',
+                username: '',
+                password: ''
+                }
+            })
+
+        to this:
+            const {values, errors, touched, handleChange, handleBlur, handleSubmit} = useFormik ({
+                onSubmit: () => { },
+                validationSchema,
+                initialValues: {
+                    email: '',
+                    username: '',
+                    password: ''
+                }
+            })
+    
+    #Remove all formik. inside the formControls
+    From this:
+        <FormControl id="email" p={4} isRequired> 
+          <FormLabel>Email</FormLabel>
+          <Input type="email" value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/> 
+          {formik.touched.email && <FormHelperText textColor="#e74c3c">{formik.errors.email}</FormHelperText>}
+        </FormControl>
+
+        <FormControl id="password" p={4} isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input type="password" value={formik.values.password} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+          {formik.touched.password && <FormHelperText textColor="#e74c3c">{formik.errors.password}</FormHelperText>}
+        </FormControl>
+
+        <Box display="flex" flexDirection="row" alignItems="center">
+          <Text> clocker.work/</Text>
+          <FormControl id="username" p={4} isRequired>
+            <Input type="username" value={formik.values.username} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
+            {formik.touched.username && <FormHelperText textColor="#e74c3c">{formik.errors.username}</FormHelperText>}
+          </FormControl> 
+        </Box>
+
+        <Box p={4}>
+          <Button width="100%" onClick={formik.handleSubmit}>Go ahead</Button>
+        </Box>
+
+    to this:
+        <FormControl id="email" p={4} isRequired> 
+          <FormLabel>Email</FormLabel>
+          <Input type="email" value={values.email} onChange={handleChange} onBlur={handleBlur}/> 
+          {touched.email && <FormHelperText textColor="#e74c3c">{errors.email}</FormHelperText>}
+        </FormControl>
+
+        <FormControl id="password" p={4} isRequired>
+          <FormLabel>Password</FormLabel>
+          <Input type="password" value={values.password} onChange={handleChange} onBlur={handleBlur}/>
+          {touched.password && <FormHelperText textColor="#e74c3c">{errors.password}</FormHelperText>}
+        </FormControl>
+
+        <Box display="flex" flexDirection="row" alignItems="center">
+          <Text> clocker.work/</Text>
+          <FormControl id="username" p={4} isRequired>
+            <Input type="username" value={values.username} onChange={handleChange} onBlur={handleBlur}/>
+            {touched.username && <FormHelperText textColor="#e74c3c">{errors.username}</FormHelperText>}
+          </FormControl> 
+        </Box>
+
+        <Box p={4}>
+          <Button width="100%" onClick={handleSubmit}>Go ahead</Button>
+        </Box>
+
+15-
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
 
 

@@ -1,0 +1,29 @@
+# To bia project
+
+# dependencies
+/bootcampAWS/bia/node_modules
+
+#React node_modules
+/bootcampAWS/bia/client/node_modules
+
+#React production project
+/bootcampAWS/bia/client/build
+/bootcampAWS/bia/.pnp
+/bootcampAWS/bia/.pnp.js
+
+# testing
+/bootcampAWS/bia/coverage
+
+# production
+/bootcampAWS/bia/build
+
+# misc
+/bootcampAWS/bia/.DS_Store
+/bootcampAWS/bia/.env.local
+/bootcampAWS/bia/.env.development.local
+/bootcampAWS/bia/.env.test.local
+/bootcampAWS/bia/.env.production.local
+
+/bootcampAWS/bia/npm-debug.log*
+/bootcampAWS/bia/yarn-debug.log*
+/bootcampAWS/bia/yarn-error.log*

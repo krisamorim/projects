@@ -1,0 +1,65 @@
+MYSQL
+#Passos:
+# 1- Obter uma imagem do docker mysql ou criar uma
+# 2- Criar um container utilizando a imagem do passo 1
+
+#Criar uma imagem (se você quiser obter a imagem é só digitar docker pull mysql ou docker pull mysql:5.7 se quiser uma versão específica como a 5.7)
+#Passos:
+# 1.1 - Criar um arquivo que servirá como base para definir os parâmetros da imagem. Em outras palavras: iremos copiar uma imagem pré existente e edita-la com os parâmetros que iremos definir
+# 2- Executar o comando para baixar a imagem que ja existe e posteriormente criar a nossa imagem 
+#
+
+# 1.1- Criar um arquivo que servirá como base para definir os parâmetros da imagem. Em outras palavras: iremos copiar uma imagem pré existente e edita-la com os parâmetros que iremos definir
+#Arquivo
+FROM mysql
+ENV MYSQL_ROOT_PASSWORD ColoqueASenhaAqui
+
+#execute o comando puxando o arquivo
+docker build -t mysql-image -f local/do/arquivo .
+
+
+#Executar o docker (melhor usar o outro comadno depois desse)
+docker run -d --rm --name mysql-container mysql-image
+#-d libera o terminal, --name deifne o nome para o container, mysql-image é o nome da imagem (user docker image list p/ ver o nome das iamgens disponiveis)
+
+
+#Executar com volume persistente com porta redicerionada
+docker run -d -v /home/user/docker/db/dbStructure:/var/lib/mysql --rm --name mysql-container -p 3306:3306 mysql-image
+# -v define que a pasta do db mysql será /home/user/docker/db/dbStructure  e tudo que é salvo nelá será refletido na pasta /var/lib/mysql do container 
+
+
+#Executando scrip sql no docker mysql
+docker exec -i mysql-container mysql -uroot -pXby98#Tec < db/toConfig/script.sql
+#mysql-container é o nome dado ao conteinar ao executar o comando docker run 
+
+#Entrar no container
+docker exec -it mysql-container bash
+
+#Faça uam alteração no DB para evitar imcompatibilidade da conexão da API com o DB
+logue no mysql -> mysql -uroot -pPassword
+ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'password';
+
+
+#Parar docker
+docker stop nomeDoContainer
+
+
+NODE
+
+#Executar
+docker run -d -v /home/user/docker/api/structure:/home/node/app --rm --name node-container -p 9001:9001 node-image
+
+
+
+WEBSITE
+DockerFIle:
+FROM php:7.2-apache
+WORKDIR /var/www/html
+
+
+Construir imagem
+docker build -t php-image -f toConfig/Dockerfile .
+
+Rodar
+sudo docker run -d -v /home/user/docker/website/structure:/var/www/html -p 8888:80 --link node-container --rm --name php-container php-image
+

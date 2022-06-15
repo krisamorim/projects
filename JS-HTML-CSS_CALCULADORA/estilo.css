@@ -10,6 +10,15 @@
 }
 
 .calculadora {
-    position: absolute;
+    position: absolute; /*para ela ocpuar paenas o espaço dela */
     background-color: black;
+    /*colocar ela no centro*/
+    top: 50%;
+    left: 50%;
+    /*o tranforme é utilizado pq o canto superioro esquedo da div é centralizado qunado utilizamos o top e o left, para centralizar o centro da div com o centro da pagina utilizamos o tranform*/
+    transform: translate(-50%,-50%);
+    /*Arredondar os cantos*/
+    border-radius: 15px;
+    /*add espaço entre os elementos internos e a borda*/
+    padding: 15px;
 }

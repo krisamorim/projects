@@ -32,6 +32,7 @@
     background-color: rgb(31,31,31);
     border: none;
     color: #fff;
+    margin: 3px;
 }
 
 .botao:hover{

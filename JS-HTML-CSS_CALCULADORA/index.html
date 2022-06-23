@@ -17,7 +17,7 @@
             <table>
                 <!-- Primeira linha da calculadora -->
                 <tr>
-                    <td><button class="botao">C</button></td>
+                    <td><button class="botao" onclick="clear()">C</button></td>
                     <td><button class="botao"><</button></td>
                     <td><button class="botao" onclick="insert('/')">/</button></td>
                     <td><button class="botao" onclick="insert('X')">X</button></td>
@@ -61,6 +61,10 @@
         function insert(num){
             var numero = document.getElementById('entrada').innerHTML;
             document.getElementById('entrada').innerHTML = numero + num;
+        }
+
+        function clear(){
+            document.getElementById('entrada').innerHTML = " ";
         }
     </script>
 

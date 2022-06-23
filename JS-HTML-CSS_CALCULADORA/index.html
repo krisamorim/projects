@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora</title>
-    <meta http-equiv="refresh" content="5">
+    <meta http-equiv="refresh" content="10">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
                     <td><button class="botao" onclick="clear()">C</button></td>
                     <td><button class="botao" onclick="back()"><</button></td>
                     <td><button class="botao" onclick="insert('/')">/</button></td>
-                    <td><button class="botao" onclick="insert('X')">X</button></td>
+                    <td><button class="botao" onclick="insert('*')">X</button></td>
                 </tr>
 
                 <!-- Segunda linha da calculadora -->
@@ -44,7 +44,7 @@
                     <td><button class="botao" onclick="insert('1')">1</button></td>
                     <td><button class="botao" onclick="insert('2')">2</button></td>
                     <td><button class="botao" onclick="insert('3')">3</button></td>
-                    <td rowspan="2"><button class="botao" id="botaoigual">=</button></td> <!-- Fazendo rowspan para que o igual ocupe 2 linhas-->
+                    <td rowspan="2"><button class="botao" id="botaoigual" onclick="calcular()">=</button></td> <!-- Fazendo rowspan para que o igual ocupe 2 linhas-->
                 </tr>
 
                 <!-- Quinta linha -->
@@ -70,6 +70,15 @@
         function back(){
             var result = document.getElementById('entrada').innerHTML;
             document.getElementById('entrada').innerHTML = result.substring(0, result.length-1);
+        }
+
+        function calcular(){
+            var result = document.getElementById('entrada').innerHTML;
+            if(result){
+                document.getElementById('entrada').innerHTML = eval(result);
+            }else{
+                document.getElementById('entrada').innerHTML = 'Nada p/ calcular'
+            }
         }
     </script>
 

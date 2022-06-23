@@ -12,7 +12,7 @@
 
 .calculadora {
     position: absolute; /*para ela ocpuar paenas o espaço dela */
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
     /*colocar ela no centro*/
     top: 50%;
     left: 50%;

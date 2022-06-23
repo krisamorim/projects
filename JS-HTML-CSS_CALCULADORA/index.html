@@ -18,7 +18,7 @@
                 <!-- Primeira linha da calculadora -->
                 <tr>
                     <td><button class="botao" onclick="clear()">C</button></td>
-                    <td><button class="botao"><</button></td>
+                    <td><button class="botao" onclick="back()"><</button></td>
                     <td><button class="botao" onclick="insert('/')">/</button></td>
                     <td><button class="botao" onclick="insert('X')">X</button></td>
                 </tr>
@@ -65,6 +65,11 @@
 
         function clear(){
             document.getElementById('entrada').innerHTML = " ";
+        }
+
+        function back(){
+            var result = document.getElementById('entrada').innerHTML;
+            document.getElementById('entrada').innerHTML = result.substring(0, result.length-1);
         }
     </script>
 
